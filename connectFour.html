@@ -28,6 +28,7 @@
 
 // Sample Connect Four Game made from JS
 
+/*
 var noDisc = "null";
 var grid = [ 
 	[noDisc, noDisc, noDisc, noDisc, noDisc, noDisc],
@@ -37,11 +38,32 @@ var grid = [
 	[noDisc, noDisc, noDisc, noDisc, noDisc, noDisc],
 	[noDisc, noDisc, noDisc, noDisc, noDisc, noDisc],
 	[noDisc, noDisc, noDisc, noDisc, noDisc, noDisc]
-];
+]; 
+*/
 
-var printGrid = function(input) {
-// stub function
+var createGrid = function(columnSize, rowSize) {
+	var grid = new Array(columnSize);
+	for (i=0; i < columnSize; i++) {
+		grid[i]=new Array(rowSize);
+	}
+	var counter = 1;
+	// inserts number 1-(columnSize*rowSize) to each element in the '2D Array'
+	for (i=0; i < columnSize; i++) {
+		for (j=0; j < rowSize; j++) {
+			grid[i][j] = counter;
+			counter++;
+		}
+	}
+	return grid;
 }
+
+var printGrid = function(inputGrid) {
+	for (i=0; i <= inputGrid.length; i++) {
+ 		document.write(inputGrid[i].toString()+"<br><br>");
+	}
+}
+
+printGrid(createGrid(7,6)); // Testing
 
 var stackCheck = function(input) {
 // stub function
@@ -51,6 +73,8 @@ var stackCheck = function(input) {
 var connectCheck = function(input) {
 // stub function
 }
+
+printGrid(createGrid(7,6));
 
 </script>
 
