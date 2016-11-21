@@ -34,36 +34,9 @@
 
 <br><br>
 
-<script>
+<script src="gameMechanics.js">
 
-// Sample Connect Four Game made from JS
-
-var createGrid = function(height, width) {
-	var grid = new Array(width);
-	for (column=0; column < width; column++) {
-		grid[column]=new Array(height);
-	}
-	var number = 1;
-	// Test: inserts number 1-(columnSize*rowSize) to each element in the '2D Array'
-	for (column=0; column < width; column++) {
-		for (row=0; row < height; row++) {
-			grid[column][row] = number;
-			number++;
-		}
-	}
-	return grid;
-}
-
-var printGrid = function(inputGrid) {
-	var height = inputGrid[0].length;
-	var width = inputGrid.length;
-	for (row=0; row < height; row++) {
-		for (column=0; column < width; column++) {
-			document.write(inputGrid[column][row]+" ");
-		}
-		document.write("<br><br>");
-	}
-}
+// Connect Four Test made from JS
 
 // Base case (Printing numbers 1-42 on a 6x7 grid)
 document.write("<h3>Base Case (standard 6x7)</h3>");
@@ -104,19 +77,9 @@ var testDimensions = function(height, width) {
 	}
 }
 
-// Sample Dimensions Test
+// Run Dimensions Test
+document.write("Running dimensions test for 6x7 grid:<br>");
 testDimensions(6,7); 
-
-var stackCheck = function(input) {
-// stub function
-}
-
-var connectCheck = function(input) {
-// stub function
-}
-
-// GUI Test
-
 
 </script>
 
