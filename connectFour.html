@@ -58,8 +58,13 @@ var createGrid = function(columnSize, rowSize) {
 }
 
 var printGrid = function(inputGrid) {
-	for (i=0; i <= inputGrid.length; i++) {
- 		document.write(inputGrid[i].toString()+"<br><br>");
+	var height = inputGrid[0].length;
+	var width = inputGrid.length;
+	for (row=0; row < height; row++) {
+		for (column=0; column < width; column++) {
+			document.write(inputGrid[column][row]+" ");
+		}
+		document.write("<br><br>");
 	}
 }
 
