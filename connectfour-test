@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	.button {
+		background-color: #4CAF50;
+		border: none;
+		color: white;
+		padding: 15px 15px
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		margin: 4px 2px;
+		cursor: pointer; 
+	}
+</style>
+</head>
+<body>
+
+<h1>Connect Four<h1>
+
+<p id="demo"></p>
+
+<h3>Buttons Test</h3>
+
+<input type="button" class="button" value="A">
+<input type="button" class="button" value="B">
+<input type="button" class="button" value="C">
+<input type="button" class="button" value="D">
+<input type="button" class="button" value="E">
+<input type="button" class="button" value="F">
+<input type="button" class="button" value="G">
+
+<br><br>
+
+<script>
+
+// Sample Connect Four Game made from JS
+
+var createGrid = function(height, width) {
+	var grid = new Array(width);
+	for (column=0; column < width; column++) {
+		grid[column]=new Array(height);
+	}
+	var number = 1;
+	// Test: inserts number 1-(columnSize*rowSize) to each element in the '2D Array'
+	for (column=0; column < width; column++) {
+		for (row=0; row < height; row++) {
+			grid[column][row] = number;
+			number++;
+		}
+	}
+	return grid;
+}
+
+var printGrid = function(inputGrid) {
+	var height = inputGrid[0].length;
+	var width = inputGrid.length;
+	for (row=0; row < height; row++) {
+		for (column=0; column < width; column++) {
+			document.write(inputGrid[column][row]+" ");
+		}
+		document.write("<br><br>");
+	}
+}
+
+// Base case (Printing numbers 1-42 on a 6x7 grid)
+document.write("<h3>Base Case (standard 6x7)</h3>");
+printGrid(createGrid(6,7));
+document.write("<br>");
+
+// Second Case (Printing numbers on a 1x2 grid)
+document.write("<h3>Second Case (1x2)</h3>");
+printGrid(createGrid(1,2));
+document.write("<br>");
+
+// Third Case (Printing numbers on a 4x4 grid)
+document.write("<h3>Third Case (4x4)</h3>");
+printGrid(createGrid(4,4));
+document.write("<br>");
+
+// Fourth Case (Printing number on a 1x1 grid)
+document.write("<h3>Fourth Case (1x1)</h3>");
+printGrid(createGrid(1,1));
+document.write("<br>");
+
+// Fifth Case (Checks Dimensions of grid)
+var testDimensions = function(height, width) {
+	var expectedHeight = height;
+	var expectedWidth = width;
+	var testGrid = createGrid(width,height);
+	var resultHeight = testGrid.length;
+	var resultWidth = testGrid[0].length;
+	if (expectedHeight == resultHeight) {
+		document.write("PASS DIMENSIONS HEIGHT TEST<br>");
+	} else {
+		document.write("FAIL DIMENSIONS HEIGHT TEST<br>");
+	}
+	if (expectedWidth == resultWidth) {
+		document.write("PASS DIMENSIONS WIDTH TEST<br>");
+	} else {
+		document.write("FAIL DIMENSIONS WIDTH TEST<br>");
+	}
+}
+
+// Sample Dimensions Test
+testDimensions(6,7); 
+
+var stackCheck = function(input) {
+// stub function
+}
+
+var connectCheck = function(input) {
+// stub function
+}
+
+// GUI Test
+
+
+</script>
+
+</body>
+</html>
