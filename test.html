@@ -42,46 +42,43 @@
 
 // Base case (Printing numbers 1-42 on a 6x7 grid)
 document.write("<h3>Base Case (standard 6x7)</h3>");
-printGrid(createGrid(6,7));
+printGrid(createTestGrid(6,7));
 document.write("<br>");
 
 // Second Case (Printing numbers on a 1x2 grid)
 document.write("<h3>Second Case (1x2)</h3>");
-printGrid(createGrid(1,2));
+printGrid(createTestGrid(1,2));
 document.write("<br>");
 
 // Third Case (Printing numbers on a 4x4 grid)
 document.write("<h3>Third Case (4x4)</h3>");
-printGrid(createGrid(4,4));
+printGrid(createTestGrid(4,4));
 document.write("<br>");
 
 // Fourth Case (Printing number on a 1x1 grid)
 document.write("<h3>Fourth Case (1x1)</h3>");
-printGrid(createGrid(1,1));
+printGrid(createTestGrid(1,1));
 document.write("<br>");
 
 // Fifth Case (Checks Dimensions of grid)
-var testDimensions = function(height, width) {
-	var expectedHeight = height;
-	var expectedWidth = width;
-	var testGrid = createGrid(width,height);
-	var resultHeight = testGrid.length;
-	var resultWidth = testGrid[0].length;
-	if (expectedHeight == resultHeight) {
-		document.write("PASS DIMENSIONS HEIGHT TEST<br>");
-	} else {
-		document.write("FAIL DIMENSIONS HEIGHT TEST<br>");
-	}
-	if (expectedWidth == resultWidth) {
-		document.write("PASS DIMENSIONS WIDTH TEST<br>");
-	} else {
-		document.write("FAIL DIMENSIONS WIDTH TEST<br>");
-	}
-}
+document.write("<h3>Running dimensions test for 6x7 grid:</h3><br>");
+testDimensions(6,7);
+document.write("<br>");
 
-// Run Dimensions Test
-document.write("Running dimensions test for 6x7 grid:<br>");
-testDimensions(6,7); 
+// Sixth Case (Insert Disc onto first grid column)
+document.write("<h3>Sixth Case - Player 1 inserts disc into first column:</h3>");
+var newGrid = createGrid(6,7);
+var currentPlayer = 1;
+var column = 0;
+testInsertion(newGrid, column, currentPlayer);
+
+
+// Seventh Case (Insert Disc onto second column on existing grid)
+document.write("<h3>Seventh Case - Player 2 inserts disc into second column on existing grid:</h3>");;
+var currentPlayer = 2;
+var column = 1;
+testInsertion(newGrid, column, currentPlayer);
+
 
 </script>
 

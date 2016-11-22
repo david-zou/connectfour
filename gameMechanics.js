@@ -3,16 +3,14 @@ var createGrid = function(height, width) {
 	for (column=0; column < width; column++) {
 		grid[column]=new Array(height);
 	}
-	var number = 1;
-	// Test: inserts number 1-(columnSize*rowSize) to each element in the '2D Array'
 	for (column=0; column < width; column++) {
 		for (row=0; row < height; row++) {
-			grid[column][row] = number;
-			number++;
+			grid[column][row] = "E";
 		}
 	}
 	return grid;
 }
+
 var printGrid = function(inputGrid) {
 	var height = inputGrid[0].length;
 	var width = inputGrid.length;
@@ -24,8 +22,33 @@ var printGrid = function(inputGrid) {
 	}
 }
 
-var insertDisc = function(column) {
-//	for (row=0; row)
+var insertDisc = function(currentGrid, selectedColumn, currentPlayer) {
+	var height = currentGrid[selectedColumn].length;
+	var position = null;
+	var isEmpty = "E";
+	var playerOne = "X";
+    var playerTwo = "O";
+	var vacantRow = true;
+	for (currentRow=0; vacantRow == true && currentRow < height; currentRow++) {
+		if (currentGrid[selectedColumn][currentRow] == isEmpty) {
+			position = currentRow;
+		}
+		else {
+			vacantRow = false;
+		}
+	}
+	if (position == null && vacantRow == false) {
+		alert("This column is already filled, please try another column.");
+	}
+	else {
+		if (currentPlayer == 1) {
+			currentGrid[selectedColumn][position] = playerOne;
+		}
+		else {
+			currentGrid[selectedColumn][position] = playerTwo;
+		}
+	}
+	return currentGrid;
 }
 
 var stackCheck = function(input) {
@@ -34,4 +57,48 @@ var stackCheck = function(input) {
 
 var connectCheck = function(input) {
 // stub function
+}
+
+// Test Functions
+
+var createTestGrid = function(height, width) {
+	var grid = new Array(width);
+	for (column=0; column < width; column++) {
+		grid[column]=new Array(height);
+	}
+	var number = 1;
+	// Test: inserts number 1-(columnSize*rowSize) to each element in the '2D Array'
+	for (column=0; column < width; column++) {
+		for (row=0; row < height; row++) {
+			grid[column][row] = number;
+			number++;
+		}
+	}
+	return grid;
+}
+
+var testDimensions = function(height, width) {
+	var expectedHeight = height;
+	var expectedWidth = width;
+	var testGrid = createTestGrid(width,height);
+	var resultHeight = testGrid.length;
+	var resultWidth = testGrid[0].length;
+	if (expectedHeight == resultHeight) {
+		document.write("PASS DIMENSIONS HEIGHT TEST<br>");
+	} else {
+		document.write("FAIL DIMENSIONS HEIGHT TEST<br>");
+	}
+	if (expectedWidth == resultWidth) {
+		document.write("PASS DIMENSIONS WIDTH TEST<br>");
+	} else {
+		document.write("FAIL DIMENSIONS WIDTH TEST<br>");
+	}
+}
+
+var testInsertion = function (currentGrid, selectedColumn, playerFlag) {
+	document.write("Before:<br>");
+	printGrid(currentGrid);
+	document.write("After:<br>");
+	var newGrid = insertDisc(currentGrid, selectedColumn, playerFlag);
+	printGrid(newGrid);
 }
