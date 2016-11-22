@@ -1,5 +1,3 @@
-<script>
-
 var createGrid = function(height, width) {
 	var grid = new Array(width);
 	for (column=0; column < width; column++) {
@@ -26,4 +24,14 @@ var printGrid = function(inputGrid) {
 	}
 }
 
-</script>
+var insertDisc = function(column) {
+//	for (row=0; row)
+}
+
+var stackCheck = function(input) {
+// stub function
+}
+
+var connectCheck = function(input) {
+// stub function
+}
