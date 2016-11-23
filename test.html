@@ -20,17 +20,19 @@
 
 <h1>Connect Four Test Page<h1>
 
-<p id="demo"></p>
-
 <h3>Buttons Test</h3>
 
-<input type="button" class="button" value="A">
-<input type="button" class="button" value="B">
-<input type="button" class="button" value="C">
-<input type="button" class="button" value="D">
-<input type="button" class="button" value="E">
-<input type="button" class="button" value="F">
-<input type="button" class="button" value="G">
+<input type="button" class="button" id= "buttonA" value="A">
+<input type="button" class="button" id= "buttonB" value="B">
+<input type="button" class="button" id= "buttonC" value="C">
+<input type="button" class="button" id= "buttonD" value="D">
+<input type="button" class="button" id= "buttonE" value="E">
+<input type="button" class="button" id= "buttonF" value="F">
+<input type="button" class="button" id= "buttonG" value="G">
+
+<br><br>
+
+<p id="mainGrid"></p>
 
 <br><br>
 
@@ -39,6 +41,14 @@
 <script>
 
 // Connect Four Test made from JS
+
+// Global variables (might need to change these later)
+var turn = 0;  // Initialize first player
+var testGrid = createGrid(6,7);
+
+document.getElementById("buttonG").addEventListener("click", function() {
+    testButton(testGrid, 6, turn);
+});
 
 // Base case (Printing numbers 1-42 on a 6x7 grid)
 document.write("<h3>Base Case (standard 6x7)</h3>");
@@ -72,13 +82,17 @@ var currentPlayer = 1;
 var column = 0;
 testInsertion(newGrid, column, currentPlayer);
 
-
 // Seventh Case (Insert Disc onto second column on existing grid)
 document.write("<h3>Seventh Case - Player 2 inserts disc into second column on existing grid:</h3>");;
 var currentPlayer = 2;
 var column = 1;
 testInsertion(newGrid, column, currentPlayer);
 
+// Seventh Case (Insert Disc onto second column on existing grid)
+document.write("<h3>Seventh Case - Player 1 inserts disc into second column on existing grid:</h3>");;
+var currentPlayer = 1;
+var column = 1;
+testInsertion(newGrid, column, currentPlayer);
 
 </script>
 

@@ -48,15 +48,21 @@ var insertDisc = function(currentGrid, selectedColumn, currentPlayer) {
 			currentGrid[selectedColumn][position] = playerTwo;
 		}
 	}
+	turn = alternateTurns(currentPlayer);
 	return currentGrid;
-}
-
-var stackCheck = function(input) {
-// stub function
 }
 
 var connectCheck = function(input) {
 // stub function
+}
+
+var alternateTurns = function(currentTurn) {
+	var playerOne = 0;
+	var playerTwo = 1;
+	if (currentTurn == playerOne) {
+		return playerTwo;
+	}
+	return playerOne;
 }
 
 // Test Functions
@@ -101,4 +107,21 @@ var testInsertion = function (currentGrid, selectedColumn, playerFlag) {
 	document.write("After:<br>");
 	var newGrid = insertDisc(currentGrid, selectedColumn, playerFlag);
 	printGrid(newGrid);
+}
+
+var testButton = function (currentGrid, selectedColumn, playerFlag) {
+	var newGrid = insertDisc(currentGrid, selectedColumn,playerFlag);
+	testPrint(newGrid);
+}
+
+var testPrint = function(inputGrid) {
+	var height = inputGrid[0].length;
+	var width = inputGrid.length;
+	for (row=0; row < height; row++) {
+		for (column=0; column < width; column++) {
+			document.getElementById('mainGrid').innerHTML = inputGrid[column][row].toString() + " ";
+			console.log(inputGrid[column][row]);
+		}
+		document.getElementById('mainGrid').innerHTML = "<br><br>";
+	}
 }
