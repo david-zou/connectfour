@@ -44,62 +44,62 @@
 
 // Global variables (might need to change these later)
 var turn = 1;  // Initialize first player
-var testGrid = createGrid(6,7);
+var mainGrid = createGrid(6,7);
 
 // Generate new empty board
-testPrint(testGrid, "mainGrid");
+printGrid(mainGrid, "mainGrid");
 
 // Assign actions to buttons
 document.getElementById("buttonA").addEventListener("click", function() {
-    testButton(testGrid, "mainGrid", 0, turn);
+    chooseButton(mainGrid, "mainGrid", 0, turn);
 });
 
 document.getElementById("buttonB").addEventListener("click", function() {
-    testButton(testGrid, "mainGrid", 1, turn);
+    chooseButton(mainGrid, "mainGrid", 1, turn);
 });
 
 document.getElementById("buttonC").addEventListener("click", function() {
-    testButton(testGrid, "mainGrid", 2, turn);
+    chooseButton(mainGrid, "mainGrid", 2, turn);
 });
 
 document.getElementById("buttonD").addEventListener("click", function() {
-    testButton(testGrid, "mainGrid", 3, turn);
+    chooseButton(mainGrid, "mainGrid", 3, turn);
 });
 
 document.getElementById("buttonE").addEventListener("click", function() {
-    testButton(testGrid, "mainGrid", 4, turn);
+    chooseButton(mainGrid, "mainGrid", 4, turn);
 });
 
 document.getElementById("buttonF").addEventListener("click", function() {
-    testButton(testGrid, "mainGrid", 5, turn);
+    chooseButton(mainGrid, "mainGrid", 5, turn);
 });
 
 document.getElementById("buttonG").addEventListener("click", function() {
-    testButton(testGrid, "mainGrid", 6, turn);
+    chooseButton(mainGrid, "mainGrid", 6, turn);
 });
 
 document.getElementById("reset").addEventListener("click", function() {
-    testReset(testGrid);
+    resetGame(mainGrid);
 });
 
 // Base case (Printing numbers 1-42 on a 6x7 grid)
 document.write("<h3>Base Case (standard 6x7)</h3>");
-printGrid(createTestGrid(6,7));
+testPrint(createTestGrid(6,7));
 document.write("<br>");
 
 // Second Case (Printing numbers on a 1x2 grid)
 document.write("<h3>Second Case (1x2)</h3>");
-printGrid(createTestGrid(1,2));
+testPrint(createTestGrid(1,2));
 document.write("<br>");
 
 // Third Case (Printing numbers on a 4x4 grid)
 document.write("<h3>Third Case (4x4)</h3>");
-printGrid(createTestGrid(4,4));
+testPrint(createTestGrid(4,4));
 document.write("<br>");
 
 // Fourth Case (Printing number on a 1x1 grid)
 document.write("<h3>Fourth Case (1x1)</h3>");
-printGrid(createTestGrid(1,1));
+testPrint(createTestGrid(1,1));
 document.write("<br>");
 
 // Fifth Case (Checks Dimensions of grid)

@@ -17,108 +17,75 @@
 </style>
 </head>
 <body>
+<center>
 
-<h1>Connect Four<h1>
+<h1>Connect Four</h1>
 
-<p id="demo"></p>
+<div id="buttonsArea">
+<input type="button" class="button" id= "buttonA" value="A">
+<input type="button" class="button" id= "buttonB" value="B">
+<input type="button" class="button" id= "buttonC" value="C">
+<input type="button" class="button" id= "buttonD" value="D">
+<input type="button" class="button" id= "buttonE" value="E">
+<input type="button" class="button" id= "buttonF" value="F">
+<input type="button" class="button" id= "buttonG" value="G">
+<br>
+<input type="button" class="button" id= "reset" value="Start Over">
+</div>
 
-<h3>Buttons Test</h3>
+<p id="scoreBoard"></p>
 
-<input type="button" class="button" value="A">
-<input type="button" class="button" value="B">
-<input type="button" class="button" value="C">
-<input type="button" class="button" value="D">
-<input type="button" class="button" value="E">
-<input type="button" class="button" value="F">
-<input type="button" class="button" value="G">
+<script src="gameMechanics.js"></script>
 
-<br><br>
+<p id="mainGrid"></p>
 
 <script>
 
-// Sample Connect Four Game made from JS
+// Global variables
+var turn = 1;
+var scorePlayerOne = 0;
+var scorePlayerTwo = 0;
+var mainGrid = createGrid(6,7);
 
-var createGrid = function(height, width) {
-	var grid = new Array(width);
-	for (column=0; column < width; column++) {
-		grid[column]=new Array(height);
-	}
-	var number = 1;
-	// Test: inserts number 1-(columnSize*rowSize) to each element in the '2D Array'
-	for (column=0; column < width; column++) {
-		for (row=0; row < height; row++) {
-			grid[column][row] = number;
-			number++;
-		}
-	}
-	return grid;
-}
+// Generate new empty game board and score board
+drawScore(scorePlayerOne,scorePlayerTwo);
+printGrid(mainGrid, "mainGrid");
 
-var printGrid = function(inputGrid) {
-	var height = inputGrid[0].length;
-	var width = inputGrid.length;
-	for (row=0; row < height; row++) {
-		for (column=0; column < width; column++) {
-			document.write(inputGrid[column][row]+" ");
-		}
-		document.write("<br><br>");
-	}
-}
+// Assign actions to buttons
+document.getElementById("buttonA").addEventListener("click", function() {
+    chooseButton(mainGrid, "mainGrid", 0, turn);
+});
 
-// Base case (Printing numbers 1-42 on a 6x7 grid)
-document.write("<h3>Base Case (standard 6x7)</h3>");
-printGrid(createGrid(6,7));
-document.write("<br>");
+document.getElementById("buttonB").addEventListener("click", function() {
+    chooseButton(mainGrid, "mainGrid", 1, turn);
+});
 
-// Second Case (Printing numbers on a 1x2 grid)
-document.write("<h3>Second Case (1x2)</h3>");
-printGrid(createGrid(1,2));
-document.write("<br>");
+document.getElementById("buttonC").addEventListener("click", function() {
+    chooseButton(mainGrid, "mainGrid", 2, turn);
+});
 
-// Third Case (Printing numbers on a 4x4 grid)
-document.write("<h3>Third Case (4x4)</h3>");
-printGrid(createGrid(4,4));
-document.write("<br>");
+document.getElementById("buttonD").addEventListener("click", function() {
+    chooseButton(mainGrid, "mainGrid", 3, turn);
+});
 
-// Fourth Case (Printing number on a 1x1 grid)
-document.write("<h3>Fourth Case (1x1)</h3>");
-printGrid(createGrid(1,1));
-document.write("<br>");
+document.getElementById("buttonE").addEventListener("click", function() {
+    chooseButton(mainGrid, "mainGrid", 4, turn);
+});
 
-// Fifth Case (Checks Dimensions of grid)
-var testDimensions = function(height, width) {
-	var expectedHeight = height;
-	var expectedWidth = width;
-	var testGrid = createGrid(width,height);
-	var resultHeight = testGrid.length;
-	var resultWidth = testGrid[0].length;
-	if (expectedHeight == resultHeight) {
-		document.write("PASS DIMENSIONS HEIGHT TEST<br>");
-	} else {
-		document.write("FAIL DIMENSIONS HEIGHT TEST<br>");
-	}
-	if (expectedWidth == resultWidth) {
-		document.write("PASS DIMENSIONS WIDTH TEST<br>");
-	} else {
-		document.write("FAIL DIMENSIONS WIDTH TEST<br>");
-	}
-}
+document.getElementById("buttonF").addEventListener("click", function() {
+    chooseButton(mainGrid, "mainGrid", 5, turn);
+});
 
-// Sample Dimensions Test
-testDimensions(6,7); 
+document.getElementById("buttonG").addEventListener("click", function() {
+    chooseButton(mainGrid, "mainGrid", 6, turn);
+});
 
-var stackCheck = function(input) {
-// stub function
-}
-
-var connectCheck = function(input) {
-// stub function
-}
-
-// GUI Test
-
+document.getElementById("reset").addEventListener("click", function() {
+    resetGame(mainGrid);
+});
 
 </script>
 
+</center>	
 </body>
 </html>

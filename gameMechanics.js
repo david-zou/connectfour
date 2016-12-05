@@ -11,22 +11,35 @@ var createGrid = function(height, width) {
 	return grid;
 }
 
-var printGrid = function(inputGrid) {
+var printGrid = function(inputGrid, gridName) {
 	var height = inputGrid[0].length;
 	var width = inputGrid.length;
+	var token = "<font size='5'><pre>";
+	var rowIndex = 0;
 	for (row=0; row < height; row++) {
 		for (column=0; column < width; column++) {
-			document.write(inputGrid[column][row]+" ");
+			if (rowIndex == width) {
+				token += "<br><br>";
+				rowIndex = 0;
+			}
+			token += inputGrid[column][row] + " ";
+			rowIndex++;
 		}
-		document.write("<br><br>");
 	}
+	token += "</pre></font>";
+	document.getElementById(gridName).innerHTML = token;
+}
+
+var chooseButton = function (currentGrid, gridName, selectedColumn, playerFlag) {
+	var newGrid = insertDisc(currentGrid, selectedColumn, playerFlag);
+	printGrid(newGrid, gridName);
 }
 
 var insertDisc = function(currentGrid, selectedColumn, currentPlayer) {
 	var height = currentGrid[selectedColumn].length;
-	console.log("Current Height of Grid:" + " " + height);
+	//console.log("Current Height of Grid:" + " " + height);
 	var width = currentGrid.length;
-	console.log("Width of Grid:" + " " + width);
+	//console.log("Width of Grid:" + " " + width);
 	var position = null;
 	var isEmpty = "E";
 	var playerOne = "X";
@@ -61,25 +74,52 @@ var insertDisc = function(currentGrid, selectedColumn, currentPlayer) {
 	return currentGrid;
 }
 
+var alternateTurns = function(currentTurn) {
+	var playerOne = 0;
+	var playerTwo = 1;
+	if (currentTurn == playerOne) {
+		return playerTwo;
+	}
+	return playerOne;
+}
+
+var checkPlayer = function(currentPlayer) {
+	var token = "X";
+	if (currentPlayer % 2 == 0) {
+		token = "O";
+	}
+	return token;
+}
+
+var checkDraw = function(currentTurn, gridHeight, gridWidth) {
+	if (currentTurn > (gridHeight * gridWidth)) {
+		alert ("It's a draw!");
+		changeButtons();
+	}
+}
+
 var winCheck = function(currentGrid, selectedColumn, currentPosition, currentPlayer) {
-	console.log("Current Player:" + " " + checkPlayer(currentPlayer));
+	//console.log("Current Player:" + " " + checkPlayer(currentPlayer));
 	var sum = 0;
 	var currentSumHorizontal = 1 + checkLeftHoriz(currentGrid, selectedColumn, currentPosition, currentPlayer, sum) + checkRightHoriz(currentGrid, selectedColumn, currentPosition, currentPlayer, sum);
 	var currentSumMainDiagonal = 1 + checkUpperLeftDiag(currentGrid, selectedColumn, currentPosition, currentPlayer, sum) + checkLowerRightDiag(currentGrid, selectedColumn, currentPosition, currentPlayer, sum);
     var currentSumAntiDiagonal = 1 + checkLowerLeftDiag(currentGrid, selectedColumn, currentPosition, currentPlayer, sum) + checkUpperRightDiag(currentGrid, selectedColumn, currentPosition, currentPlayer, sum);
 	var currentSumVertical = 1 + checkVertical(currentGrid, selectedColumn, currentPosition, currentPlayer, sum);
-	console.log("Current Sum - Horizontal:" + " " + currentSumHorizontal);
-	console.log("Current Sum - Main Diagonal:" + " " + currentSumMainDiagonal);
-	console.log("Current Sum - Anti Diagonal:" + " " + currentSumAntiDiagonal);
-	console.log("Current Sum - Vertical:" + " " + currentSumVertical);
+	//console.log("Current Sum - Horizontal:" + " " + currentSumHorizontal);
+	//console.log("Current Sum - Main Diagonal:" + " " + currentSumMainDiagonal);
+	//console.log("Current Sum - Anti Diagonal:" + " " + currentSumAntiDiagonal);
+	//console.log("Current Sum - Vertical:" + " " + currentSumVertical);
 	if (currentSumHorizontal >= 4 || currentSumMainDiagonal >= 4 || currentSumAntiDiagonal >= 4 || currentSumVertical >= 4) {
 		if (currentPlayer % 2 == 0) {
 			alert ("Player Two Wins!");
+			scorePlayerTwo++;
 		}
 		else {
 			alert ("Player One Wins!");
+			scorePlayerOne++;
 		}
 		changeButtons();
+		drawScore(scorePlayerOne, scorePlayerTwo);
 	}
 }
 
@@ -230,35 +270,11 @@ var checkVertical = function(currentGrid, selectedColumn, currentRow, currentPla
 	return newSum;
 }
 
-var alternateTurns = function(currentTurn) {
-	var playerOne = 0;
-	var playerTwo = 1;
-	if (currentTurn == playerOne) {
-		return playerTwo;
-	}
-	return playerOne;
-}
-
-var checkPlayer = function(currentPlayer) {
-	var token = "X";
-	if (currentPlayer % 2 == 0) {
-		token = "O";
-	}
-	return token;
-}
-
-var checkDraw = function(currentTurn, gridHeight, gridWidth) {
-	if (currentTurn > (gridHeight * gridWidth)) {
-		alert ("It's a draw!");
-		// Insert reset function here
-	}
-}
-
-var testReset = function(currentGrid) {
+var resetGame = function(currentGrid) {
 	var height = currentGrid[0].length;
     var width = currentGrid.length;
-	testGrid = createGrid(height,width);
-	testPrint(testGrid, "mainGrid");
+	mainGrid = createGrid(height,width);
+	printGrid(mainGrid, "mainGrid");
 	turn = 1;
 	document.getElementById("buttonA").disabled = false;
 	document.getElementById("buttonB").disabled = false;
@@ -279,6 +295,10 @@ var changeButtons = function() {
 	document.getElementById("buttonF").disabled = true;
 	document.getElementById("buttonG").disabled = true;
 	document.getElementById("reset").value = "Play Again!";	
+}
+
+var drawScore = function(scorePlayerOne, scorePlayerTwo) {
+	document.getElementById("scoreBoard").innerHTML = "<b>Score Board:</b><br>Player One:" + " " + scorePlayerOne + "<br>Player Two:" + " " + scorePlayerTwo;
 }
 
 // Test Functions
@@ -319,32 +339,19 @@ var testDimensions = function(height, width) {
 
 var testInsertion = function (currentGrid, selectedColumn, playerFlag) {
 	document.write("Before:<br>");
-	printGrid(currentGrid);
+	testPrint(currentGrid);
 	document.write("After:<br>");
 	var newGrid = insertDisc(currentGrid, selectedColumn, playerFlag);
-	printGrid(newGrid);
+	testPrint(newGrid);
 }
 
-var testButton = function (currentGrid, gridName, selectedColumn, playerFlag) {
-	var newGrid = insertDisc(currentGrid, selectedColumn, playerFlag);
-	testPrint(newGrid, gridName);
-}
-
-var testPrint = function(inputGrid, gridName) {
+var testPrint = function(inputGrid) {
 	var height = inputGrid[0].length;
 	var width = inputGrid.length;
-	var token = "<font size='5'><pre>";
-	var rowIndex = 0;
 	for (row=0; row < height; row++) {
 		for (column=0; column < width; column++) {
-			if (rowIndex == width) {
-				token += "<br><br>";
-				rowIndex = 0;
-			}
-			token += inputGrid[column][row] + " ";
-			rowIndex++;
+			document.write(inputGrid[column][row]+" ");
 		}
+		document.write("<br><br>");
 	}
-	token += "</pre></font>";
-	document.getElementById(gridName).innerHTML = token;
 }
