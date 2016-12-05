@@ -32,22 +32,47 @@
 
 <br><br>
 
-<p id="mainGrid"></p>
-
-<br><br>
-
 <script src="gameMechanics.js"></script>
 
-<script>
+<p id="mainGrid"> </p>
 
+<script>
 // Connect Four Test made from JS
 
 // Global variables (might need to change these later)
-var turn = 0;  // Initialize first player
+var turn = 1;  // Initialize first player
 var testGrid = createGrid(6,7);
 
+// Generate new empty board
+testPrint(testGrid, "mainGrid");
+
+// Assign actions to buttons
+document.getElementById("buttonA").addEventListener("click", function() {
+    testButton(testGrid, "mainGrid", 0, turn);
+});
+
+document.getElementById("buttonB").addEventListener("click", function() {
+    testButton(testGrid, "mainGrid", 1, turn);
+});
+
+document.getElementById("buttonC").addEventListener("click", function() {
+    testButton(testGrid, "mainGrid", 2, turn);
+});
+
+document.getElementById("buttonD").addEventListener("click", function() {
+    testButton(testGrid, "mainGrid", 3, turn);
+});
+
+document.getElementById("buttonE").addEventListener("click", function() {
+    testButton(testGrid, "mainGrid", 4, turn);
+});
+
+document.getElementById("buttonF").addEventListener("click", function() {
+    testButton(testGrid, "mainGrid", 5, turn);
+});
+
 document.getElementById("buttonG").addEventListener("click", function() {
-    testButton(testGrid, 6, turn);
+    testButton(testGrid, "mainGrid", 6, turn);
 });
 
 // Base case (Printing numbers 1-42 on a 6x7 grid)
@@ -76,23 +101,23 @@ testDimensions(6,7);
 document.write("<br>");
 
 // Sixth Case (Insert Disc onto first grid column)
-document.write("<h3>Sixth Case - Player 1 inserts disc into first column:</h3>");
-var newGrid = createGrid(6,7);
-var currentPlayer = 1;
-var column = 0;
-testInsertion(newGrid, column, currentPlayer);
+//document.write("<h3>Sixth Case - Player 1 inserts disc into first column:</h3>");
+//var newGrid = createGrid(6,7);
+//var currentPlayer = 1;
+//var column = 0;
+//testInsertion(newGrid, column, currentPlayer);
 
 // Seventh Case (Insert Disc onto second column on existing grid)
-document.write("<h3>Seventh Case - Player 2 inserts disc into second column on existing grid:</h3>");;
-var currentPlayer = 2;
-var column = 1;
-testInsertion(newGrid, column, currentPlayer);
+//document.write("<h3>Seventh Case - Player 2 inserts disc into second column on existing grid:</h3>");;
+//var currentPlayer = 2;
+//var column = 1;
+//testInsertion(newGrid, column, currentPlayer);
 
 // Seventh Case (Insert Disc onto second column on existing grid)
-document.write("<h3>Seventh Case - Player 1 inserts disc into second column on existing grid:</h3>");;
-var currentPlayer = 1;
-var column = 1;
-testInsertion(newGrid, column, currentPlayer);
+//document.write("<h3>Seventh Case - Player 1 inserts disc into second column on existing grid:</h3>");;
+//var currentPlayer = 1;
+//var column = 1;
+//testInsertion(newGrid, column, currentPlayer);
 
 </script>
 
