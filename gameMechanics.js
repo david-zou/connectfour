@@ -5,7 +5,7 @@ var createGrid = function(height, width) {
 	}
 	for (column=0; column < width; column++) {
 		for (row=0; row < height; row++) {
-			grid[column][row] = "E";
+			grid[column][row] = "<font color='gray'>E</font>";
 		}
 	}
 	return grid;
@@ -37,13 +37,11 @@ var chooseButton = function (currentGrid, gridName, selectedColumn, playerFlag) 
 
 var insertDisc = function(currentGrid, selectedColumn, currentPlayer) {
 	var height = currentGrid[selectedColumn].length;
-	//console.log("Current Height of Grid:" + " " + height);
 	var width = currentGrid.length;
-	//console.log("Width of Grid:" + " " + width);
 	var position = null;
-	var isEmpty = "E";
+	var isEmpty = "<font color='gray'>E</font>";
 	var playerOne = "X";
-    var playerTwo = "O";
+    var playerTwo = "<font color='red'>O</font>";
 	var vacantRow = true;
 	for (currentRow=0; vacantRow == true && currentRow < height; currentRow++) {
 		if (currentGrid[selectedColumn][currentRow] == isEmpty) {
@@ -86,7 +84,7 @@ var alternateTurns = function(currentTurn) {
 var checkPlayer = function(currentPlayer) {
 	var token = "X";
 	if (currentPlayer % 2 == 0) {
-		token = "O";
+		token = "<font color='red'>O</font>";
 	}
 	return token;
 }
