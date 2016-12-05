@@ -22,6 +22,8 @@
 
 <h3>Buttons Test</h3>
 
+<p id="buttonsArea">
+
 <input type="button" class="button" id= "buttonA" value="A">
 <input type="button" class="button" id= "buttonB" value="B">
 <input type="button" class="button" id= "buttonC" value="C">
@@ -29,12 +31,13 @@
 <input type="button" class="button" id= "buttonE" value="E">
 <input type="button" class="button" id= "buttonF" value="F">
 <input type="button" class="button" id= "buttonG" value="G">
+<input type="button" class="button" id= "reset" value="Start Over">
 
-<br><br>
+</p>
 
 <script src="gameMechanics.js"></script>
 
-<p id="mainGrid"> </p>
+<p id="mainGrid"></p>
 
 <script>
 // Connect Four Test made from JS
@@ -73,6 +76,10 @@ document.getElementById("buttonF").addEventListener("click", function() {
 
 document.getElementById("buttonG").addEventListener("click", function() {
     testButton(testGrid, "mainGrid", 6, turn);
+});
+
+document.getElementById("reset").addEventListener("click", function() {
+    testReset(testGrid);
 });
 
 // Base case (Printing numbers 1-42 on a 6x7 grid)

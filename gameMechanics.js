@@ -75,9 +75,11 @@ var winCheck = function(currentGrid, selectedColumn, currentPosition, currentPla
 	if (currentSumHorizontal >= 4 || currentSumMainDiagonal >= 4 || currentSumAntiDiagonal >= 4 || currentSumVertical >= 4) {
 		if (currentPlayer % 2 == 0) {
 			alert ("Player Two Wins!");
+			// disableButtons();
 		}
 		else {
 			alert ("Player One Wins!");
+			// disableButtons();
 		}
 	}
 }
@@ -253,6 +255,20 @@ var checkDraw = function(currentTurn, gridHeight, gridWidth) {
 	}
 }
 
+var testReset = function(currentGrid) {
+	var height = currentGrid[0].length;
+    var width = currentGrid.length;
+	testGrid = createGrid(height,width);
+	testPrint(testGrid, "mainGrid");
+	turn = 1;
+	//document.getElementById("buttonsArea").innerHTML = "<input type='button' class='button' id= 'buttonA' value='A'><input type='button' class='button' id= 'buttonB' value='B'><input type='button' class='button' id= 'buttonC' value='C'><input type='button' class='button' id= 'buttonD' value='D'><input type='button' class='button' id= 'buttonE' value='E'><input type='button' class='button' id= 'buttonF' value='F'><input type='button' class='button' id= 'buttonG' value='G'><input type='button' class='button' id= 'reset' value='Start Over'>";
+}
+
+// Not working
+var disableButtons = function() {
+	document.getElementById("buttonsArea").innerHTML = "<input type='button' class='button' id='reset' value='Play Again!''>";
+}
+
 // Test Functions
 
 var createTestGrid = function(height, width) {
@@ -305,7 +321,7 @@ var testButton = function (currentGrid, gridName, selectedColumn, playerFlag) {
 var testPrint = function(inputGrid, gridName) {
 	var height = inputGrid[0].length;
 	var width = inputGrid.length;
-	var token = "";
+	var token = "<font size='5'><pre>";
 	var rowIndex = 0;
 	for (row=0; row < height; row++) {
 		for (column=0; column < width; column++) {
@@ -317,5 +333,6 @@ var testPrint = function(inputGrid, gridName) {
 			rowIndex++;
 		}
 	}
+	token += "</pre></font>";
 	document.getElementById(gridName).innerHTML = token;
 }
