@@ -75,12 +75,11 @@ var winCheck = function(currentGrid, selectedColumn, currentPosition, currentPla
 	if (currentSumHorizontal >= 4 || currentSumMainDiagonal >= 4 || currentSumAntiDiagonal >= 4 || currentSumVertical >= 4) {
 		if (currentPlayer % 2 == 0) {
 			alert ("Player Two Wins!");
-			// disableButtons();
 		}
 		else {
 			alert ("Player One Wins!");
-			// disableButtons();
 		}
+		changeButtons();
 	}
 }
 
@@ -261,12 +260,25 @@ var testReset = function(currentGrid) {
 	testGrid = createGrid(height,width);
 	testPrint(testGrid, "mainGrid");
 	turn = 1;
-	//document.getElementById("buttonsArea").innerHTML = "<input type='button' class='button' id= 'buttonA' value='A'><input type='button' class='button' id= 'buttonB' value='B'><input type='button' class='button' id= 'buttonC' value='C'><input type='button' class='button' id= 'buttonD' value='D'><input type='button' class='button' id= 'buttonE' value='E'><input type='button' class='button' id= 'buttonF' value='F'><input type='button' class='button' id= 'buttonG' value='G'><input type='button' class='button' id= 'reset' value='Start Over'>";
+	document.getElementById("buttonA").disabled = false;
+	document.getElementById("buttonB").disabled = false;
+	document.getElementById("buttonC").disabled = false;
+	document.getElementById("buttonD").disabled = false;
+	document.getElementById("buttonE").disabled = false;
+	document.getElementById("buttonF").disabled = false;
+	document.getElementById("buttonG").disabled = false;
+	document.getElementById("reset").value = "Start Over";	
 }
 
-// Not working
-var disableButtons = function() {
-	document.getElementById("buttonsArea").innerHTML = "<input type='button' class='button' id='reset' value='Play Again!''>";
+var changeButtons = function() {
+	document.getElementById("buttonA").disabled = true;
+	document.getElementById("buttonB").disabled = true;
+	document.getElementById("buttonC").disabled = true;
+	document.getElementById("buttonD").disabled = true;
+	document.getElementById("buttonE").disabled = true;
+	document.getElementById("buttonF").disabled = true;
+	document.getElementById("buttonG").disabled = true;
+	document.getElementById("reset").value = "Play Again!";	
 }
 
 // Test Functions
