@@ -1,3 +1,7 @@
+// Game Mechanics for the Connect Four Game
+
+// Main methods
+
 var createGrid = function(height, width) {
 	var grid = new Array(width);
 	for (column=0; column < width; column++) {
@@ -104,6 +108,46 @@ var winCheck = function(currentGrid, selectedColumn, currentPosition, currentPla
 	}
 }
 
+var resetGame = function(currentGrid) {
+	var height = currentGrid[0].length;
+    var width = currentGrid.length;
+	mainGrid = createGrid(height,width);
+	printGrid(mainGrid, "mainGrid");
+	turn = 1;
+	printTurn(turn);
+	document.getElementById("buttonA").disabled = false;
+	document.getElementById("buttonB").disabled = false;
+	document.getElementById("buttonC").disabled = false;
+	document.getElementById("buttonD").disabled = false;
+	document.getElementById("buttonE").disabled = false;
+	document.getElementById("buttonF").disabled = false;
+	document.getElementById("buttonG").disabled = false;
+	document.getElementById("reset").value = "Start Over";	
+}
+
+var changeButtons = function() {
+	document.getElementById("buttonA").disabled = true;
+	document.getElementById("buttonB").disabled = true;
+	document.getElementById("buttonC").disabled = true;
+	document.getElementById("buttonD").disabled = true;
+	document.getElementById("buttonE").disabled = true;
+	document.getElementById("buttonF").disabled = true;
+	document.getElementById("buttonG").disabled = true;
+	document.getElementById("reset").value = "Play Again!";	
+}
+
+var printScore = function(scorePlayerOne, scorePlayerTwo) {
+	document.getElementById("scoreBoard").innerHTML = "<b>Score Board:</b><br>Player One:" + " " + scorePlayerOne + "<br><font color='red'>Player Two:" + " " + scorePlayerTwo + "</font><br>";
+}
+
+var printTurn = function (turn) {
+	var declareTurn = "Player One (X)";
+	if (turn % 2 == 0) {
+		declareTurn = "<font color='red'>Player Two (O)</font>";
+	}
+	document.getElementById("currentTurn").innerHTML = "Current Turn:" + " " + declareTurn + " ";
+}
+
 var checkLeftHoriz = function(currentGrid, selectedColumn, currentRow, currentPlayer, currentSum) {
 	var newSum = currentSum;
 	if (selectedColumn == 0) return currentSum;
@@ -201,46 +245,6 @@ var checkVertical = function(currentGrid, selectedColumn, currentRow, currentPla
 		return checkVertical(currentGrid, selectedColumn, newRow, currentPlayer, newSum);
 	}
 	return newSum;
-}
-
-var resetGame = function(currentGrid) {
-	var height = currentGrid[0].length;
-    var width = currentGrid.length;
-	mainGrid = createGrid(height,width);
-	printGrid(mainGrid, "mainGrid");
-	turn = 1;
-	printTurn(turn);
-	document.getElementById("buttonA").disabled = false;
-	document.getElementById("buttonB").disabled = false;
-	document.getElementById("buttonC").disabled = false;
-	document.getElementById("buttonD").disabled = false;
-	document.getElementById("buttonE").disabled = false;
-	document.getElementById("buttonF").disabled = false;
-	document.getElementById("buttonG").disabled = false;
-	document.getElementById("reset").value = "Start Over";	
-}
-
-var changeButtons = function() {
-	document.getElementById("buttonA").disabled = true;
-	document.getElementById("buttonB").disabled = true;
-	document.getElementById("buttonC").disabled = true;
-	document.getElementById("buttonD").disabled = true;
-	document.getElementById("buttonE").disabled = true;
-	document.getElementById("buttonF").disabled = true;
-	document.getElementById("buttonG").disabled = true;
-	document.getElementById("reset").value = "Play Again!";	
-}
-
-var printScore = function(scorePlayerOne, scorePlayerTwo) {
-	document.getElementById("scoreBoard").innerHTML = "<b>Score Board:</b><br>Player One:" + " " + scorePlayerOne + "<br><font color='red'>Player Two:" + " " + scorePlayerTwo + "</font><br>";
-}
-
-var printTurn = function (turn) {
-	var declareTurn = "Player One (X)";
-	if (turn % 2 == 0) {
-		declareTurn = "<font color='red'>Player Two (O)</font>";
-	}
-	document.getElementById("currentTurn").innerHTML = "Current Turn:" + " " + declareTurn + " ";
 }
 
 // Test Functions
