@@ -1,5 +1,9 @@
 // Game Mechanics for the Connect Four Game
 
+/************************************************/
+/***************  MAIN FUNCTIONS ****************/
+/************************************************/
+
 /*
 promptBoardHeight() asks the user to designate the game board's height.
 */
@@ -114,16 +118,15 @@ are both executed to see if the player's insertion triggers a win or draw.  If n
 the game continues and advances to the next player's turn.
 */
 var insertDisc = function(currentGrid, selectedColumn, currentTurn) {
-	var position;
+	var position = null;
 	var vacantRow = true;
-	var currentRow = 0;
-	for (currentRow = 0; vacantRow === true && currentRow < height; currentRow++) {
-		if (currentGrid[selectedColumn][currentRow] === isEmpty) {
+	for (currentRow = 0; (vacantRow == true) && (currentRow < height); currentRow++) {
+		if (currentGrid[selectedColumn][currentRow] == isEmpty) {
 			position = currentRow;
 		}
 		else {
 			vacantRow = false;
-		}
+		}			
 	}
 	if (position == null && vacantRow === false) {
 		alert("This column is already filled, please try another column.");
@@ -384,57 +387,98 @@ var checkVertical = function(currentGrid, selectedColumn, currentRow, currentTur
 	return newSum;
 }
 
-// Test Functions
+/************************************************/
+/****************** UNIT TESTS ******************/
+/************************************************/
 
-var createTestGrid = function(height, width) {
-	var grid = new Array(width);
-	for (column = 0; column < width; column++) {
-		grid[column]=new Array(height);
-	}
-	var number = 1;
-	// Test: inserts number 1-(columnSize*rowSize) to each element in the '2D Array'
-	for (column = 0; column < width; column++) {
-		for (row = 0; row < height; row++) {
-			grid[column][row] = number;
-			number++;
-		}
-	}
-	return grid;
-}
-
-var testDimensions = function(height, width) {
+var testCreateGrid = function() {
 	var expectedHeight = height;
 	var expectedWidth = width;
-	var testGrid = createTestGrid(width,height);
+	var testGrid = createGrid(height,width);
 	var resultHeight = testGrid.length;
 	var resultWidth = testGrid[0].length;
 	if (expectedHeight == resultHeight) {
-		document.write("PASS DIMENSIONS HEIGHT TEST<br>");
+		document.write("Passed height test for createGrid, matches expected height.<br>");
 	} else {
-		document.write("FAIL DIMENSIONS HEIGHT TEST<br>");
+		document.write("Failed height test for createGrid, does not match expected height.<br>");
 	}
 	if (expectedWidth == resultWidth) {
-		document.write("PASS DIMENSIONS WIDTH TEST<br>");
+		document.write("Passed width test for createGrid, matches expected width.<br>");
 	} else {
-		document.write("FAIL DIMENSIONS WIDTH TEST<br>");
+		document.write("Failed width test for createGrid, does not match expected width.<br>");
 	}
-}
-
-var testInsertion = function(currentGrid, selectedColumn, playerFlag) {
-	document.write("Before:<br>");
-	testPrint(currentGrid);
-	document.write("After:<br>");
-	var newGrid = insertDisc(currentGrid, selectedColumn, playerFlag);
-	testPrint(newGrid);
-}
-
-var testPrint = function(inputGrid) {
-	var height = inputGrid[0].length;
-	var width = inputGrid.length;
 	for (row = 0; row < height; row++) {
 		for (column = 0; column < width; column++) {
-			document.write(inputGrid[column][row]+" ");
+			if (testGrid[column][row] !== isEmpty) {
+				document.write("isEmpty Test Failed: All cell column " + column " row " + row " not empty in new board.<br>")
+			}
 		}
-		document.write("<br><br>");
 	}
+}
+
+var testCurrentPlayer = function() {
+	var testTurn = 0;
+	if (currentPlayer(testTurn) !== playerOne) {
+		document.write("testCurrentPlayer failed to return correct result: should be playerOne on Turn 0.<br>");
+	} else {
+		document.write("testCurrentPlayer passed: Turn 0 corresponds to playerOne.<br>")
+	}
+	testTurn = 1;
+	if (currentPlayer(testTurn) !== playerTwo) {
+		document.write("testCurrentPlayer failed to return correct result: should be playerTwo on Turn 1.<br>");
+	} else {
+		document.write("testCurrentPlayer passed: Turn 1 corresponds to playerTwo.<br>")
+	}
+}
+
+var testInsertion = function() {
+	var testGrid = createGrid(height,width);
+	var expectedColumn = 0;
+	var expectedRow = width-1;
+	var testTurn = 0;
+	var newGridOne = insertDisc(testGrid, expectedColumn, testTurn);
+	if (newGrid[expectedColumn][expectedRow] !== currentPlayer(testTurn)) {
+		document.write("testInsertion failed: Failed to insert player One's token onto first column.<br>");
+	} else {
+		document.write("testInsertion passed: Succeeded to insert player One's token onto first column.<br>");
+	}
+	expectedColumn = 0;
+	expectedRow = width-2;
+	testTurn++;
+	var newGridTwo = insertDisc(newGridOne, testColumn, testTurn);
+	if (newGridTwo[expectedColumn][expectedRow] !== currentPlayer(testTurn)) {
+		document.write("testInsertion failed: Failed to insert player Two's token onto first column.<br>");
+	} else {
+		document.write("testInsertion passed: Succeeded to insert player Two's token onto first column.<br>");
+	}
+	expectedColumn = 1;
+	expectedRow = width-1;
+	testTurn++;
+	var newGridTwo = insertDisc(newGridOne, testColumn, testTurn);
+	if (newGridTwo[expectedColumn][expectedRow] !== currentPlayer(testTurn)) {
+		document.write("testInsertion failed: Failed to insert player One's token onto second column.<br>");
+	} else {
+		document.write("testInsertion passed: Succeeded to insert player One's token onto second column.<br>");
+	}
+}
+
+var testCheckLeftHoriz = function() {
+}
+
+var testCheckRightHoriz = function() {
+}
+
+var testCheckLowerLeftDiag = function() {
+}
+
+var testCheckLowerRightDiag = function() {
+}
+
+var testCheckUpperLeftDiag = function() {
+}
+
+var testCheckUpperRightDiag = function() {
+}
+
+var testCheckVertical = function() {
 }
