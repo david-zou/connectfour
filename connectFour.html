@@ -1,20 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-	.button {
-		background-color: #4CAF50;
-		border: none;
-		color: white;
-		padding: 15px 15px
-		text-align: center;
-		text-decoration: none;
-		display: inline-block;
-		font-size: 16px;
-		margin: 4px 2px;
-		cursor: pointer; 
-	}
-</style>
+<link rel="stylesheet" type="text/css" href="connect-four.css">
 </head>
 <body>
 <center>
@@ -22,76 +9,31 @@
 <h1>Connect Four</h1>
 
 <div id="buttonsArea">
-	Choose a column:
-	<br>
-	<input type="button" class="button" id= "buttonA" value="A">
-	<input type="button" class="button" id= "buttonB" value="B">
-	<input type="button" class="button" id= "buttonC" value="C">
-	<input type="button" class="button" id= "buttonD" value="D">
-	<input type="button" class="button" id= "buttonE" value="E">
-	<input type="button" class="button" id= "buttonF" value="F">
-	<input type="button" class="button" id= "buttonG" value="G">
-	<br>	
-	<input type="button" class="button" id= "reset" value="Start Over">
+Choose a column:
+<br>
+<input type="button" class="button" id= "buttonA" value="A">
+<input type="button" class="button" id= "buttonB" value="B">
+<input type="button" class="button" id= "buttonC" value="C">
+<input type="button" class="button" id= "buttonD" value="D">
+<input type="button" class="button" id= "buttonE" value="E">
+<input type="button" class="button" id= "buttonF" value="F">
+<input type="button" class="button" id= "buttonG" value="G">
+<br>	
+<input type="button" class="button" id= "reset" value="Start Over">
+<br>
 </div>
 
-<p id="scoreBoard"></p>
+<div id="scoreBoard"></div>
 
-<p id="currentTurn"></p>
+<div id="currentTurn"></div>
 
-<p><font size="5"><pre>A B C D E F G </pre></font></p>
+<div id="columnMap"></div>
 
 <script src="gameMechanics.js"></script>
 
-<p id="mainGrid"></p>
+<div id="mainGrid"></div>
 
-<script>
-
-// Global variables
-	var turn = 1;
-	var scorePlayerOne = 0;
-	var scorePlayerTwo = 0;
-	var mainGrid = createGrid(6,7);
-
-// Generate new empty game board and score board
-	printScore(scorePlayerOne,scorePlayerTwo);
-	printTurn(turn);
-	printGrid(mainGrid, "mainGrid");
-
-// Assign actions to buttons
-	document.getElementById("buttonA").addEventListener("click", function() {
-    	chooseButton(mainGrid, "mainGrid", 0, turn);
-	});
-
-	document.getElementById("buttonB").addEventListener("click", function() {
-    	chooseButton(mainGrid, "mainGrid", 1, turn);
-	});
-
-	document.getElementById("buttonC").addEventListener("click", function() {
-    	chooseButton(mainGrid, "mainGrid", 2, turn);
-	});
-
-	document.getElementById("buttonD").addEventListener("click", function() {
-    	chooseButton(mainGrid, "mainGrid", 3, turn);
-	});
-
-	document.getElementById("buttonE").addEventListener("click", function() {
-    	chooseButton(mainGrid, "mainGrid", 4, turn);
-	});
-
-	document.getElementById("buttonF").addEventListener("click", function() {
-    	chooseButton(mainGrid, "mainGrid", 5, turn);
-	});
-
-	document.getElementById("buttonG").addEventListener("click", function() {
-   		chooseButton(mainGrid, "mainGrid", 6, turn);
-	});
-
-	document.getElementById("reset").addEventListener("click", function() {
-   		resetGame(mainGrid);
-	});
-
-</script>
+<script src="gameUI.js"></script>
 
 </center>	
 </body>
