@@ -1,132 +1,16 @@
 <!DOCTYPE html>
 <html>
-<head>
-<style>
-	.button {
-		background-color: #4CAF50;
-		border: none;
-		color: white;
-		padding: 15px 15px
-		text-align: center;
-		text-decoration: none;
-		display: inline-block;
-		font-size: 16px;
-		margin: 4px 2px;
-		cursor: pointer; 
-	}
-</style>
-</head>
+<head></head>
 <body>
 
-<h1>Connect Four Test Page<h1>
-
-<h3>Buttons Test</h3>
-
-<p id="buttonsArea">
-
-<input type="button" class="button" id= "buttonA" value="A">
-<input type="button" class="button" id= "buttonB" value="B">
-<input type="button" class="button" id= "buttonC" value="C">
-<input type="button" class="button" id= "buttonD" value="D">
-<input type="button" class="button" id= "buttonE" value="E">
-<input type="button" class="button" id= "buttonF" value="F">
-<input type="button" class="button" id= "buttonG" value="G">
-<input type="button" class="button" id= "reset" value="Start Over">
-
-</p>
+<h1>Connect Four Test Page</h1>
 
 <script src="gameMechanics.js"></script>
 
-<p id="mainGrid"></p>
+<h3>Printing Empty Grid:<br></h3>
+<div id="mainGrid"></div>
 
-<script>
-// Connect Four Test made from JS
-
-// Global variables
-var turn = 1;
-var mainGrid = createGrid(6,7);
-
-// Generate new empty board
-printGrid(mainGrid, "mainGrid");
-
-// Assign actions to buttons
-document.getElementById("buttonA").addEventListener("click", function() {
-    chooseButton(mainGrid, "mainGrid", 0, turn);
-});
-
-document.getElementById("buttonB").addEventListener("click", function() {
-    chooseButton(mainGrid, "mainGrid", 1, turn);
-});
-
-document.getElementById("buttonC").addEventListener("click", function() {
-    chooseButton(mainGrid, "mainGrid", 2, turn);
-});
-
-document.getElementById("buttonD").addEventListener("click", function() {
-    chooseButton(mainGrid, "mainGrid", 3, turn);
-});
-
-document.getElementById("buttonE").addEventListener("click", function() {
-    chooseButton(mainGrid, "mainGrid", 4, turn);
-});
-
-document.getElementById("buttonF").addEventListener("click", function() {
-    chooseButton(mainGrid, "mainGrid", 5, turn);
-});
-
-document.getElementById("buttonG").addEventListener("click", function() {
-    chooseButton(mainGrid, "mainGrid", 6, turn);
-});
-
-document.getElementById("reset").addEventListener("click", function() {
-    resetGame(mainGrid);
-});
-
-// Base case (Printing numbers 1-42 on a 6x7 grid)
-document.write("<h3>Base Case (standard 6x7)</h3>");
-testPrint(createTestGrid(6,7));
-document.write("<br>");
-
-// Second Case (Printing numbers on a 1x2 grid)
-document.write("<h3>Second Case (1x2)</h3>");
-testPrint(createTestGrid(1,2));
-document.write("<br>");
-
-// Third Case (Printing numbers on a 4x4 grid)
-document.write("<h3>Third Case (4x4)</h3>");
-testPrint(createTestGrid(4,4));
-document.write("<br>");
-
-// Fourth Case (Printing number on a 1x1 grid)
-document.write("<h3>Fourth Case (1x1)</h3>");
-testPrint(createTestGrid(1,1));
-document.write("<br>");
-
-// Fifth Case (Checks Dimensions of grid)
-document.write("<h3>Running dimensions test for 6x7 grid:</h3><br>");
-testDimensions(6,7);
-document.write("<br>");
-
-// Sixth Case (Insert Disc onto first grid column)
-document.write("<h3>Sixth Case - Player 1 inserts disc into first column:</h3>");
-var newGrid = createGrid(6,7);
-var currentPlayer = 1;
-var column = 0;
-testInsertion(newGrid, column, currentPlayer);
-
-// Seventh Case (Insert Disc onto second column on existing grid)
-document.write("<h3>Seventh Case - Player 2 inserts disc into second column on existing grid:</h3>");;
-var currentPlayer = 2;
-var column = 1;
-testInsertion(newGrid, column, currentPlayer);
-
-// Seventh Case (Insert Disc onto second column on existing grid)
-document.write("<h3>Seventh Case - Player 1 inserts disc into second column on existing grid:</h3>");;
-var currentPlayer = 1;
-var column = 1;
-testInsertion(newGrid, column, currentPlayer);
-
-</script>
+<script src="gameTest.js"></script>
 
 </body>
 </html>

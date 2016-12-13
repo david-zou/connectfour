@@ -8,11 +8,11 @@ printGrid(mainGrid);
 // Assign actions to buttons
 
 /*
-var newButton;
+var newButton = "";
 for (column = 0; column < width; column++) {
 	newButton = "button"+alphabet.charAt(column);
 	document.getElementById(newButton).addEventListener("click", function() {
-		chooseButton(mainGrid, column, turn);
+		chooseButton(mainGrid, column, turn); 
 	});
 }
 */
