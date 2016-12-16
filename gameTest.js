@@ -1,11 +1,11 @@
 // Connect Four Test Script made from JS
 
-// Global variables
-var turn = 1;
-var mainGrid = createGrid(6,7);
-
 // Generate new empty board
+mainGrid = createGrid(height,width);
 printGrid(mainGrid);
+
+document.write("<h3>Create Grid Test:</h3>");
+testCreateGrid();
 
 document.write("<h3>Tracking Current Player Test:</h3>");
 testCurrentPlayer();
@@ -33,3 +33,6 @@ testCheckUpperRightDiag();
 
 document.write("<h3>Player One Wins - Lower Left Diagonal Check:</h3>");
 testCheckLowerLeftDiag();
+
+document.write("<h3>Testing Draw Condition:</h3>");
+testDrawCheck();
